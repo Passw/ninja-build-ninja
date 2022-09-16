@@ -481,9 +481,19 @@ void RealCommandRunner::Abort() {
 bool RealCommandRunner::CanRunMore() const {
   size_t subproc_number =
       subprocs_.running_.size() + subprocs_.finished_.size();
-  return (int)subproc_number < config_.parallelism
+
+  printf("\n\nsubproc_number : %d\n", (int)subproc_number);
+  printf("config_.parallelism : %d\n", config_.parallelism);
+  printf("subprocs_.running_.empty() : %d\n", subprocs_.running_.empty());
+  printf("config_.max_load_average : %f\n", config_.max_load_average);
+  printf("GetLoadAverage() : %f\n", GetLoadAverage());
+
+  int CanRunMore = (int)subproc_number < config_.parallelism
     && ((subprocs_.running_.empty() || config_.max_load_average <= 0.0f)
         || GetLoadAverage() < config_.max_load_average);
+
+  printf("CanRunMore : %d\n", CanRunMore);
+  return CanRunMore;
 }
 
 bool RealCommandRunner::StartCommand(Edge* edge) {

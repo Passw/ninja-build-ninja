@@ -1405,7 +1405,7 @@ class DeferGuessParallelism {
   BuildConfig* config;
 
   DeferGuessParallelism(BuildConfig* config)
-      : needGuess(true), config(config) {}
+      : needGuess(false), config(config) {}
 
   void Refresh() {
     if (needGuess) {
