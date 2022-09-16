@@ -244,7 +244,10 @@ int GuessParallelism() {
   case 2:
     return 3;
   default:
-    return processors + 2;
+    // https://github.com/ninja-build/ninja/issues/1441
+    printf("hello world\n");
+    return 1;
+    //return processors + 2;
   }
 }
 
