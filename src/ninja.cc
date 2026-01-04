@@ -259,7 +259,8 @@ int GuessParallelism() {
   case 2:
     return 3;
   default:
-    return processors + 2;
+    return 1;
+    // return processors + 2;
   }
 }
 
@@ -1673,7 +1674,7 @@ class DeferGuessParallelism {
   BuildConfig* config;
 
   DeferGuessParallelism(BuildConfig* config)
-      : needGuess(true), config(config) {}
+      : needGuess(false), config(config) {}
 
   void Refresh() {
     if (needGuess) {
